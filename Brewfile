@@ -1,3 +1,2 @@
-brew "kafka"
-brew "zookeeper"
-brew "docker"
+brew "kafka", restart_service: :changed
+brew "zookeeper", restart_service: :changed
