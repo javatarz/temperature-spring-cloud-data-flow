@@ -7,6 +7,18 @@ wget http://repo.spring.io/release/org/springframework/cloud/spring-cloud-datafl
 wget http://repo.spring.io/release/org/springframework/cloud/spring-cloud-dataflow-shell/1.1.4.RELEASE/spring-cloud-dataflow-shell-1.1.4.RELEASE.jar
 ```
 
+### Brew Setup
+Installs the project dependencies
+```bash
+brew bundle
+```
+
+### Brew startup
+```bash
+brew start services zookeeper
+brew start services kafka
+```
+
 ### Start Local Server
 ```bash
 java -jar spring-cloud-dataflow-server-local-1.1.3.RELEASE.jar
