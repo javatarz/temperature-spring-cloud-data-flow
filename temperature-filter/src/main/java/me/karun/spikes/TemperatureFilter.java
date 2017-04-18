@@ -3,10 +3,10 @@ package me.karun.spikes;
 import me.karun.spikes.model.FilterConfig;
 import me.karun.spikes.model.TemperaturePayload;
 import me.karun.spikes.model.Unit;
+import me.karun.spikes.repository.FilterConfigRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Processor;
-import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.integration.annotation.Filter;
 
 import javax.annotation.PostConstruct;
@@ -15,12 +15,12 @@ import javax.annotation.PostConstruct;
 public class TemperatureFilter {
 
   @Autowired
-  private MongoOperations mongoOperation;
+  private FilterConfigRepository repository;
 
   @PostConstruct
   public void init() {
-    mongoOperation.save(celsius());
-    mongoOperation.save(fahrenheit());
+    repository.save(celsius());
+    repository.save(fahrenheit());
   }
 
   private FilterConfig celsius() {
@@ -43,13 +43,9 @@ public class TemperatureFilter {
 
     final TemperaturePayload payload = TemperaturePayload.parse(payloadString);
 
-    final FilterConfig filterConfig = fetchById(payload.getUnit());
+    final FilterConfig filterConfig = repository.findByUnit(payload.getUnit());
     System.out.println("filterConfig = " + filterConfig);
 
     return payload.getValue() > filterConfig.getFilterValue();
-  }
-
-  private FilterConfig fetchById(final Unit unit) {
-    return mongoOperation.findById(unit, FilterConfig.class);
   }
 }
