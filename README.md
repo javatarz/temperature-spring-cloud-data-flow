@@ -70,4 +70,4 @@ This file is also available in `docs/input.json`
 ```
 
 ### High Level Flow
-![High Level Flow](/docs/high-level.png?raw=true)
+![High Level Flow](/docs/high-level-flow.png?raw=true)
