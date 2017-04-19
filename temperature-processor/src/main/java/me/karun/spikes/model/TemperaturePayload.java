@@ -11,6 +11,6 @@ import java.time.LocalDate;
 @ToString
 public class TemperaturePayload {
   private final LocalDate date;
-  private final int value;
+  private final double value;
   private final Unit unit;
 }
