@@ -4,11 +4,13 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDate;
+
 @RequiredArgsConstructor
 @Getter
 @ToString
 public class TemperaturePayload {
-  private final String date;
+  private final LocalDate date;
   private final int value;
-  private final String unit;
+  private final Unit unit;
 }

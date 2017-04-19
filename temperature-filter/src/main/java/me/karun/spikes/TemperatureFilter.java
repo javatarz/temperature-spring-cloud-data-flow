@@ -41,7 +41,7 @@ public class TemperatureFilter {
   public boolean filterValues(final TemperaturePayload payload) {
     System.out.println("payload = " + payload);
 
-    final FilterConfig filterConfig = repository.findByUnit(payload.getUnit());
+    final FilterConfig filterConfig = repository.findByUnit(payload.getUnit().name());
     System.out.println("filterConfig = " + filterConfig);
 
     return payload.getValue() > filterConfig.getFilterValue();
