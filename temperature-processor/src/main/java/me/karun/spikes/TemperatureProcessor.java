@@ -9,8 +9,8 @@ import org.springframework.integration.annotation.Transformer;
 public class TemperatureProcessor {
 
   @Transformer(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-  public int convertToCelsius(String payloadString) {
-    final TemperaturePayload payload = TemperaturePayload.parse(payloadString);
+  public int convertToCelsius(final TemperaturePayload payload) {
+    System.out.println("payload = " + payload);
 
     return (payload.getValue() - 30) / 2;
   }

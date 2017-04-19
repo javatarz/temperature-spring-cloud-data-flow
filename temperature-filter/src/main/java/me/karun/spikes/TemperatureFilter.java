@@ -38,10 +38,8 @@ public class TemperatureFilter {
   }
 
   @Filter(inputChannel = Processor.INPUT, outputChannel = Processor.OUTPUT)
-  public boolean filterValues(String payloadString) {
-    System.out.println("payloadString = " + payloadString);
-
-    final TemperaturePayload payload = TemperaturePayload.parse(payloadString);
+  public boolean filterValues(final TemperaturePayload payload) {
+    System.out.println("payload = " + payload);
 
     final FilterConfig filterConfig = repository.findByUnit(payload.getUnit());
     System.out.println("filterConfig = " + filterConfig);
